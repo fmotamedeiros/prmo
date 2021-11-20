@@ -8,7 +8,7 @@ export default App = () => {
   const getMessages = async () => {
      try {
 
-      const rawResponse = await fetch('http://localhost:5000/api/messages', {
+      const rawResponse = await fetch('http://192.168.2.114:5000/api/messages', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -17,7 +17,7 @@ export default App = () => {
         body: JSON.stringify({message: 'Hello World'})
       });
       const content = await rawResponse.json();
-      setData(content.messages);
+      setData(content);
     } catch (error) {
       console.error(error);
     } finally {
@@ -39,8 +39,8 @@ export default App = () => {
     <View style={styles.container}>
       {isLoading ? <ActivityIndicator/> : (
         <FlatList
-          data={data}
-          keyExtractor={({ id }) => id}
+          data={data.messages}
+          keyExtractor={item => item.id}
           renderItem={({ item }) => (
             <Item message={item.message} />
           )}
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   title: {
-    fontSize: 32,
+    fontSize: 22,
+    color: '#FFFFFF'
   },
 });

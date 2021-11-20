@@ -9,8 +9,8 @@ def hello_world():
 def add_message():
     content = request.json
 
-    messages = ['Message 01!', 'Message 02!']
-    messages.append(content['message'])
+    messages = [{'id': 1, 'message': 'Message 01!'}, {'id': 2, 'message': 'Message 02!'}]
+    messages.append({'id': 3, 'message': content['message']})
 
     return jsonify({"messages": messages})
 
