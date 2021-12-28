@@ -13,8 +13,7 @@ export default MoviesListScreen = () => {
   const [data, setData] = useState([]);
 
   const getMovies = () => {
-    let isMounted = true;
-
+    
     const db = getDatabase();
     const reference = ref(db, 'movies');
     onValue(reference, (snapshot) => {
@@ -29,12 +28,8 @@ export default MoviesListScreen = () => {
         });
       });
 
-      if (isMounted){
-        setData(movies);
-        setLoading(false);
-      }
-
-      return () => { isMounted = false };
+      setData(movies);
+      setLoading(false);
     });
 
   }
