@@ -12,14 +12,16 @@ export default AddMovieScreen = (props) => {
     const [releaseYear, setReleaseYear] = useState('');
 
     useEffect(() => {
-        if (props.route.params.releaseYear){
-            setReleaseYear(props.route.params.releaseYear);
-        }
-        if (props.route.params.id){
-            setId(props.route.params.id);
-        }
-        if (props.route.params.title){
-            setTitle(props.route.params.title);
+        if (props.route.params){
+            if (props.route.params.releaseYear){
+                setReleaseYear(props.route.params.releaseYear);
+            }
+            if (props.route.params.id){
+                setId(props.route.params.id);
+            }
+            if (props.route.params.title){
+                setTitle(props.route.params.title);
+            }
         }
     }, [props]);
 
@@ -32,13 +34,6 @@ export default AddMovieScreen = (props) => {
             "title": title, 
             "releaseYear": releaseYear
         });
-
-        /*const db = getDatabase();
-        const reference = ref(db, 'movies');
-        push(reference, {
-            "title": title, 
-            "releaseYear": releaseYear
-        });*/
 
         navigation.goBack();
     }
