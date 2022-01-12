@@ -6,7 +6,7 @@ import { deleteMovie } from '../services/MoviesService';
 export default Item = ({ id, title, releaseYear, updateList }) => {
     const deleteMovieFromService = async (id) => {
         await deleteMovie(id);
-        updateList();
+        //updateList();
     }
     
     return(
